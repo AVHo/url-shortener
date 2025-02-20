@@ -41,12 +41,15 @@ This is a simple URL Shortener service built in TypeScript and Express, using Ty
 ## Docker build commands
 
   docker build -t url-shortener .
+
   docker run -p 3000:3000 url-shortener
 
 ## Run server, without Docker setup - Server runs on PORT: 3000
 
   npm install       - to install all dependencies
+
   npm run build
+
   npm start
 
   The server is now accessible at http://localhost:3000
@@ -54,7 +57,8 @@ This is a simple URL Shortener service built in TypeScript and Express, using Ty
 ## Run React Client - Force client to run on PORT: 3001
 
   cd client
-  npm install         - install all dependencies
+  npm install                             - install all dependencies
+
   PORT=3001 npm start
 
   The client React App is now accessible at http://localhost:3001
