@@ -38,6 +38,28 @@ function App() {
 
   // POST /shorten
   const handleShorten = async () => {
+    if (!inputValue) {
+      setErrorMsg("Please enter a URL to shorten.");
+      return;
+    }
+  
+    // Define a regular expression to validate the URL.
+    // This regex checks for a proper protocol and domain
+    const urlRegex = new RegExp(
+      // This regex ensures the URL starts with http:// or https:// and then has some valid domain content.
+      "^(https?:\\/\\/)" + // protocol
+        "((([a-zA-Z0-9\\-]+\\.)+[a-zA-Z]{2,})|" + // domain name
+        "localhost|" + // localhost
+        "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+        "(\\:\\d+)?(\\/[-a-zA-Z0-9@:%_\\+.~#?&//=]*)?$",
+      "i"
+    );
+  
+    // Validate the input URL using the regex
+    if (!urlRegex.test(inputValue)) {
+      setErrorMsg("Please enter a valid URL (must start with http:// or https://).");
+      return;
+    }
     try {
       // Build the request payload
       const payload: Record<string, any> = { url: inputValue };
